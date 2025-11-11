@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
@@ -6,7 +7,7 @@ import { orders } from '@/lib/data';
 const getOverviewData = () => {
     const statusCounts: { [key: string]: number } = {
         'Cutting': 0,
-        'Stitching': 0,
+        'Machine': 0,
         'Ready for Packing': 0,
         'Packed': 0,
         'Ready to Deliver': 0,

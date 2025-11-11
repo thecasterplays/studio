@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Card,
@@ -17,7 +18,7 @@ import { users, orders } from '@/lib/data';
 const getStaffPerformanceData = () => {
     const staffPerformance: { [key: string]: { name: string, completed: number } } = {};
 
-    users.filter(u => u.role === 'Staff').forEach(staff => {
+    users.filter(u => u.role !== 'Admin' && u.role !== 'Supervisor').forEach(staff => {
         staffPerformance[staff.id] = { name: staff.name, completed: 0 };
     });
 

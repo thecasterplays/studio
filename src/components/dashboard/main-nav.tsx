@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useAuth } from '@/context/auth-context';
@@ -12,6 +13,7 @@ import {
   BarChart3,
   Users,
   BrainCircuit,
+  PlusCircle,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -25,13 +27,19 @@ export function MainNav() {
       href: '/dashboard',
       label: 'Dashboard',
       icon: Home,
-      roles: ['Admin', 'Supervisor', 'Staff'],
+      roles: ['Admin', 'Supervisor', 'Cutter', 'Machine', 'Packing'],
     },
     {
       href: '/dashboard/orders',
       label: 'Orders',
       icon: Package,
-      roles: ['Admin', 'Supervisor', 'Staff'],
+      roles: ['Admin', 'Supervisor', 'Cutter', 'Machine', 'Packing'],
+    },
+    {
+      href: '/dashboard/create-task',
+      label: 'Create Task',
+      icon: PlusCircle,
+      roles: ['Cutter', 'Packing'],
     },
     {
       href: '/dashboard/reports',

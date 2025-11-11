@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Table,
@@ -25,7 +26,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { MoreHorizontal } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
-import { orders, getStaffNameById, Order } from '@/lib/data';
+import { orders, getStaffNameById, Order, users, User } from '@/lib/data';
 
 const getBadgeVariant = (
   status: Order['status']
@@ -34,7 +35,7 @@ const getBadgeVariant = (
     case 'Ready to Deliver':
     case 'Packed':
       return 'default';
-    case 'Stitching':
+    case 'Machine':
     case 'Ready for Packing':
       return 'secondary';
     case 'Cutting':
@@ -49,9 +50,23 @@ export default function OrdersPage() {
   if (!user) return null;
 
   const userOrders =
-    user.role === 'Staff'
-      ? orders.filter((order) => order.assignedStaffId === user.id)
-      : orders;
+    user.role === 'Admin' || user.role === 'Supervisor'
+      ? orders
+      : orders.filter((order) => order.assignedStaffId === user.id);
+      
+  const staffUsers = users.filter(u => u.role !== 'Admin' && u.role !== 'Supervisor');
+
+  const handleAssignTask = (orderId: string, staffId: string) => {
+    // This is a simulation. In a real app, you'd update the backend.
+    console.log(`Assigning order ${orderId} to staff ${staffId}`);
+    const order = orders.find(o => o.id === orderId);
+    if (order) {
+      order.assignedStaffId = staffId;
+      // This is a client-side only update for the demo.
+      // We would need to force a re-render or use state management in a real app.
+      alert(`Order ${orderId} assigned to ${getStaffNameById(staffId)} (simulated)`);
+    }
+  };
 
   return (
     <Card>
@@ -106,8 +121,15 @@ export default function OrdersPage() {
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
                       <DropdownMenuItem>View Details</DropdownMenuItem>
-                      {user.role === 'Admin' && (
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                      {(user.role === 'Admin' || user.role === 'Supervisor') && (
+                        <>
+                          <DropdownMenuLabel>Assign To</DropdownMenuLabel>
+                          {staffUsers.map((staff: User) => (
+                            <DropdownMenuItem key={staff.id} onClick={() => handleAssignTask(order.id, staff.id)}>
+                              {staff.name}
+                            </DropdownMenuItem>
+                          ))}
+                        </>
                       )}
                       {user.role === 'Admin' && (
                         <DropdownMenuItem className="text-destructive">

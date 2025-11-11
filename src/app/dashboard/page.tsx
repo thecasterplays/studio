@@ -1,3 +1,4 @@
+
 'use client';
 import { useAuth } from '@/context/auth-context';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,6 +8,7 @@ import { RecentOrders } from '@/components/dashboard/recent-orders';
 import { orders, getStaffNameById, orderStatusFlow } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -56,12 +58,28 @@ export default function DashboardPage() {
         alert(`Order ${orderId} is already at the final stage. (simulated)`);
       }
     };
+    
+    const renderCreateTaskButton = () => {
+      if (user.role === 'Cutter' || user.role === 'Packing') {
+        return (
+          <Button asChild>
+            <Link href="/dashboard/create-task">
+              Create New Task <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        );
+      }
+      return null;
+    }
 
     return (
       <div className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight">
-          Welcome, {user.name.split(' ')[0]}
-        </h2>
+        <div className="flex justify-between items-center">
+          <h2 className="text-3xl font-bold tracking-tight">
+            Welcome, {user.name.split(' ')[0]}
+          </h2>
+          {renderCreateTaskButton()}
+        </div>
         <Card>
           <CardHeader>
             <CardTitle>Your Assigned Tasks</CardTitle>
@@ -95,6 +113,7 @@ export default function DashboardPage() {
       </div>
     );
   };
+  
   return (
     <div>
       {user.role === 'Admin' || user.role === 'Supervisor'

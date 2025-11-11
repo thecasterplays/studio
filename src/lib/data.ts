@@ -1,4 +1,5 @@
-export type UserRole = 'Admin' | 'Supervisor' | 'Staff';
+
+export type UserRole = 'Admin' | 'Supervisor' | 'Cutter' | 'Machine' | 'Packing';
 
 export type User = {
   id: string;
@@ -10,14 +11,14 @@ export type User = {
 
 export type OrderStatus =
   | 'Cutting'
-  | 'Stitching'
+  | 'Machine'
   | 'Ready for Packing'
   | 'Packed'
   | 'Ready to Deliver';
 
 export const orderStatusFlow: OrderStatus[] = [
   'Cutting',
-  'Stitching',
+  'Machine',
   'Ready for Packing',
   'Packed',
   'Ready to Deliver',
@@ -39,37 +40,37 @@ export const users: User[] = [
   {
     id: '1',
     name: 'Admin User',
-    email: 'admin@stitchflow.com',
+    email: 'admin@sirahadn.com',
     role: 'Admin',
     avatar: 'https://picsum.photos/seed/1/100/100',
   },
   {
     id: '2',
     name: 'Supervisor Sam',
-    email: 'supervisor@stitchflow.com',
+    email: 'supervisor@sirahadn.com',
     role: 'Supervisor',
     avatar: 'https://picsum.photos/seed/2/100/100',
   },
   {
-    id: '3',
-    name: 'Staff Steve',
-    email: 'staff@stitchflow.com',
-    role: 'Staff',
-    avatar: 'https://picsum.photos/seed/3/100/100',
-  },
-    {
     id: '4',
     name: 'Cutter Carl',
-    email: 'carl@stitchflow.com',
-    role: 'Staff',
+    email: 'carl@sirahadn.com',
+    role: 'Cutter',
     avatar: 'https://picsum.photos/seed/4/100/100',
   },
-    {
+  {
     id: '5',
-    name: 'Stitcher Sarah',
-    email: 'sarah@stitchflow.com',
-    role: 'Staff',
+    name: 'Machine Operator Sarah',
+    email: 'sarah@sirahadn.com',
+    role: 'Machine',
     avatar: 'https://picsum.photos/seed/5/100/100',
+  },
+  {
+    id: '6',
+    name: 'Packer Pete',
+    email: 'pete@sirahadn.com',
+    role: 'Packing',
+    avatar: 'https://picsum.photos/seed/6/100/100',
   },
 ];
 
@@ -89,7 +90,7 @@ export const orders: Order[] = [
     fabricQuality: 'Deluxe',
     quantity: 500,
     assignedStaffId: '5',
-    status: 'Stitching',
+    status: 'Machine',
     startDate: new Date('2024-07-19T11:30:00Z'),
   },
   {
@@ -97,20 +98,20 @@ export const orders: Order[] = [
     fabricType: 'Silk',
     fabricQuality: 'Standard',
     quantity: 800,
-    assignedStaffId: '3',
+    assignedStaffId: '6',
     status: 'Ready for Packing',
     startDate: new Date('2024-07-18T14:00:00Z'),
-    completionDate: new Date('2024-07-21T10:00:00Z')
+    completionDate: new Date('2024-07-21T10:00:00Z'),
   },
   {
     id: 'SF-1004',
     fabricType: 'Cotton',
     fabricQuality: 'Standard',
     quantity: 2500,
-    assignedStaffId: '3',
+    assignedStaffId: '6',
     status: 'Packed',
     startDate: new Date('2024-07-17T08:00:00Z'),
-    completionDate: new Date('2024-07-20T17:00:00Z')
+    completionDate: new Date('2024-07-20T17:00:00Z'),
   },
   {
     id: 'SF-1005',
@@ -129,12 +130,12 @@ export const orders: Order[] = [
     fabricQuality: 'Deluxe',
     quantity: 1500,
     assignedStaffId: '5',
-    status: 'Stitching',
+    status: 'Machine',
     startDate: new Date('2024-07-21T09:30:00Z'),
   },
 ];
 
 export const getStaffNameById = (id: string) => {
-  const user = users.find(u => u.id === id);
+  const user = users.find((u) => u.id === id);
   return user ? user.name : 'Unassigned';
 };
