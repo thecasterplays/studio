@@ -27,7 +27,7 @@ export const orderStatusFlow: OrderStatus[] = [
 export type Order = {
   id: string;
   fabricType: string;
-  fabricQuality: 'Standard' | 'Premium' | 'Deluxe';
+  fabricQuality: string;
   quantity: number;
   assignedStaffId: string;
   status: OrderStatus;
@@ -74,11 +74,19 @@ export const users: User[] = [
   },
 ];
 
+export let fabricQualities: string[] = ['40x40', '40x60', '60x60'];
+
+export const addFabricQuality = (quality: string) => {
+  if (!fabricQualities.includes(quality)) {
+    fabricQualities.push(quality);
+  }
+}
+
 export const orders: Order[] = [
   {
     id: 'SF-1001',
     fabricType: 'Cotton',
-    fabricQuality: 'Premium',
+    fabricQuality: '40x60',
     quantity: 1200,
     assignedStaffId: '4',
     status: 'Cutting',
@@ -87,7 +95,7 @@ export const orders: Order[] = [
   {
     id: 'SF-1002',
     fabricType: 'Linen',
-    fabricQuality: 'Deluxe',
+    fabricQuality: '60x60',
     quantity: 500,
     assignedStaffId: '5',
     status: 'Machine',
@@ -96,7 +104,7 @@ export const orders: Order[] = [
   {
     id: 'SF-1003',
     fabricType: 'Silk',
-    fabricQuality: 'Standard',
+    fabricQuality: '40x40',
     quantity: 800,
     assignedStaffId: '6',
     status: 'Ready for Packing',
@@ -106,7 +114,7 @@ export const orders: Order[] = [
   {
     id: 'SF-1004',
     fabricType: 'Cotton',
-    fabricQuality: 'Standard',
+    fabricQuality: '40x40',
     quantity: 2500,
     assignedStaffId: '6',
     status: 'Packed',
@@ -116,7 +124,7 @@ export const orders: Order[] = [
   {
     id: 'SF-1005',
     fabricType: 'Polyester',
-    fabricQuality: 'Premium',
+    fabricQuality: '40x60',
     quantity: 750,
     assignedStaffId: '4',
     status: 'Ready to Deliver',
@@ -127,7 +135,7 @@ export const orders: Order[] = [
   {
     id: 'SF-1006',
     fabricType: 'Cotton',
-    fabricQuality: 'Deluxe',
+    fabricQuality: '60x60',
     quantity: 1500,
     assignedStaffId: '5',
     status: 'Machine',

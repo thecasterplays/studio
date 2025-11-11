@@ -21,14 +21,14 @@ import {
 import { useAuth } from '@/context/auth-context';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { orders } from '@/lib/data';
+import { orders, fabricQualities } from '@/lib/data';
 
 export default function CreateTaskPage() {
   const { user } = useAuth();
   const router = useRouter();
 
   const [fabricType, setFabricType] = useState('');
-  const [fabricQuality, setFabricQuality] = useState<'Standard' | 'Premium' | 'Deluxe'>('Standard');
+  const [fabricQuality, setFabricQuality] = useState(fabricQualities[0]);
   const [quantity, setQuantity] = useState('');
 
   if (!user || (user.role !== 'Cutter' && user.role !== 'Packing')) {
@@ -63,14 +63,14 @@ export default function CreateTaskPage() {
         </div>
         <div className="grid gap-2">
             <Label htmlFor="fabric-quality">Fabric Quality</Label>
-            <Select value={fabricQuality} onValueChange={(value: 'Standard' | 'Premium' | 'Deluxe') => setFabricQuality(value)}>
+            <Select value={fabricQuality} onValueChange={(value) => setFabricQuality(value)}>
                 <SelectTrigger id="fabric-quality">
                     <SelectValue placeholder="Select quality" />
                 </SelectTrigger>
                 <SelectContent>
-                    <SelectItem value="Standard">Standard</SelectItem>
-                    <SelectItem value="Premium">Premium</SelectItem>
-                    <SelectItem value="Deluxe">Deluxe</SelectItem>
+                    {fabricQualities.map((quality) => (
+                      <SelectItem key={quality} value={quality}>{quality}</SelectItem>
+                    ))}
                 </SelectContent>
             </Select>
         </div>

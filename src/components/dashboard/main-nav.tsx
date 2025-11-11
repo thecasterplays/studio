@@ -14,6 +14,7 @@ import {
   Users,
   BrainCircuit,
   PlusCircle,
+  Calendar,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -40,6 +41,12 @@ export function MainNav() {
       label: 'Create Task',
       icon: PlusCircle,
       roles: ['Cutter', 'Packing'],
+    },
+    {
+      href: '/dashboard/production-calendar',
+      label: 'Production Calendar',
+      icon: Calendar,
+      roles: ['Admin', 'Supervisor'],
     },
     {
       href: '/dashboard/reports',
