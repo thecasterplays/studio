@@ -18,8 +18,9 @@ export function SirahAndAdnLogo(props: SVGProps<SVGSVGElement>) {
         fontSize="60"
         fontWeight="bold"
         fontFamily="sans-serif"
+        xmlSpace="preserve"
       >
-        S&amp;A
+        {'  S&A  '}
       </text>
     </svg>
   );
