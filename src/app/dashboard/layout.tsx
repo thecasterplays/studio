@@ -10,7 +10,7 @@ import {
   SidebarContent,
   SidebarInset,
 } from '@/components/ui/sidebar';
-import { StitchFlowLogo } from '@/components/icons';
+import { SirahAndAdnLogo } from '@/components/icons';
 import { MainNav } from '@/components/dashboard/main-nav';
 import { Header } from '@/components/dashboard/header';
 import Loading from './loading';
@@ -38,9 +38,9 @@ export default function DashboardLayout({
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2">
-            <StitchFlowLogo className="h-8 w-8 text-sidebar-foreground" />
+            <SirahAndAdnLogo className="h-8 w-8 text-sidebar-foreground" />
             <span className="text-lg font-semibold text-sidebar-foreground">
-              StitchFlow
+              Sirah&Adn
             </span>
           </div>
         </SidebarHeader>

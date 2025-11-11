@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react';
 
-export function StitchFlowLogo(props: SVGProps<SVGSVGElement>) {
+export function SirahAndAdnLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

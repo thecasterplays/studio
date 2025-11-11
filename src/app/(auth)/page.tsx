@@ -1,12 +1,12 @@
+import { SirahAndAdnLogo } from '@/components/icons';
 import { UserAuthForm } from '@/components/auth/user-auth-form';
-import { StitchFlowLogo } from '@/components/icons';
 
 export default function LoginPage() {
   return (
     <div className="flex w-full max-w-sm flex-col items-center text-center">
-      <StitchFlowLogo className="mb-4 h-12 w-12 text-primary" />
+      <SirahAndAdnLogo className="mb-4 h-12 w-12 text-primary" />
       <h1 className="text-2xl font-semibold tracking-tight">
-        Welcome to StitchFlow
+        Welcome to Sirah&Adn
       </h1>
       <p className="mt-2 text-sm text-muted-foreground">
         Enter your credentials to access your account

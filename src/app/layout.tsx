@@ -4,7 +4,7 @@ import { AuthProvider } from '@/context/auth-context';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'StitchFlow',
+  title: 'Sirah&Adn',
   description: 'Workflow management for your stitching business.',
 };
 

@@ -21,13 +21,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     try {
-      const storedUser = localStorage.getItem('stitchflow-user');
+      const storedUser = localStorage.getItem('sirahandadn-user');
       if (storedUser) {
         setUser(JSON.parse(storedUser));
       }
     } catch (error) {
       console.error('Failed to parse user from localStorage', error);
-      localStorage.removeItem('stitchflow-user');
+      localStorage.removeItem('sirahandadn-user');
     } finally {
       setLoading(false);
     }
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const foundUser = users.find((u) => u.email === email);
     if (foundUser) {
       setUser(foundUser);
-      localStorage.setItem('stitchflow-user', JSON.stringify(foundUser));
+      localStorage.setItem('sirahandadn-user', JSON.stringify(foundUser));
       router.push('/dashboard');
     } else {
       // In a real app, you'd show an error.
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.error('User not found');
       // For demonstration, let's log in the admin if the user is not found
       setUser(users[0]);
-      localStorage.setItem('stitchflow-user', JSON.stringify(users[0]));
+      localStorage.setItem('sirahandadn-user', JSON.stringify(users[0]));
       router.push('/dashboard');
     }
     setLoading(false);
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('stitchflow-user');
+    localStorage.removeItem('sirahandadn-user');
     router.push('/');
   };
 
